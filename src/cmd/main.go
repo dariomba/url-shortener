@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 
 	urlshortener "github.com/dariomba/url-shortener/src/internal/handlers/url_shortener"
 	"github.com/dariomba/url-shortener/src/internal/services/shortener"
@@ -26,10 +28,14 @@ func main() {
 }
 
 func buildRedisClient() *redis.Client {
+	redisDB, err := strconv.Atoi(os.Getenv("REDIS_DB"))
+	if err != nil {
+		panic("Redis DB must be an integer")
+	}
 	redisClient := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "", // no password
-		DB:       0,  // use default db
+		Addr:     os.Getenv("REDIS_ADDR"),
+		Password: os.Getenv("REDIS_PSWD"),
+		DB:       redisDB,
 	})
 	return redisClient
 }
