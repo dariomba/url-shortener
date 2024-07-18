@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	urlshortener "github.com/dariomba/url-shortener/internal/handlers/url_shortener"
-	"github.com/dariomba/url-shortener/internal/services/shortener"
-	"github.com/dariomba/url-shortener/internal/services/storage"
+	urlshortener "github.com/dariomba/url-shortener/src/internal/handlers/url_shortener"
+	"github.com/dariomba/url-shortener/src/internal/services/shortener"
+	"github.com/dariomba/url-shortener/src/internal/services/storage"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"

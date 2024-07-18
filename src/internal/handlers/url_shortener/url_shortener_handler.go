@@ -7,7 +7,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/dariomba/url-shortener/internal/ports"
+	"github.com/dariomba/url-shortener/src/internal/ports"
 	"github.com/gin-gonic/gin"
 )
 

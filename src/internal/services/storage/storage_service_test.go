@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/dariomba/url-shortener/internal/mocks"
-	"github.com/dariomba/url-shortener/internal/services/storage"
+	"github.com/dariomba/url-shortener/src/internal/mocks"
+	"github.com/dariomba/url-shortener/src/internal/services/storage"
 	"github.com/golang/mock/gomock"
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"

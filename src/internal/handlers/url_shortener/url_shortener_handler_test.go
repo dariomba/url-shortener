@@ -9,8 +9,8 @@ import (
 	"os"
 	"testing"
 
-	urlshortener "github.com/dariomba/url-shortener/internal/handlers/url_shortener"
-	"github.com/dariomba/url-shortener/internal/mocks"
+	urlshortener "github.com/dariomba/url-shortener/src/internal/handlers/url_shortener"
+	"github.com/dariomba/url-shortener/src/internal/mocks"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"

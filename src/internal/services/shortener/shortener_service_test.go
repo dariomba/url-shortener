@@ -3,7 +3,7 @@ package shortener_test
 import (
 	"testing"
 
-	"github.com/dariomba/url-shortener/internal/services/shortener"
+	"github.com/dariomba/url-shortener/src/internal/services/shortener"
 	"github.com/stretchr/testify/assert"
 )
 

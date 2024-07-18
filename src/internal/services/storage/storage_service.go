@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/dariomba/url-shortener/internal/ports"
+	"github.com/dariomba/url-shortener/src/internal/ports"
 )
 
 const CacheDuration = 8 * time.Hour
