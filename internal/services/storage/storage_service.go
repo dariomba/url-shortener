@@ -4,15 +4,17 @@ import (
 	"context"
 	"fmt"
 	"time"
+
+	"github.com/dariomba/url-shortener/internal/ports"
 )
 
 const CacheDuration = 8 * time.Hour
 
 type StorageService struct {
-	client StorageClient
+	client ports.StorageClient
 }
 
-func NewStorageService(client StorageClient) *StorageService {
+func NewStorageService(client ports.StorageClient) *StorageService {
 	return &StorageService{
 		client: client,
 	}
