@@ -8,7 +8,9 @@ import (
 	"github.com/itchyny/base58-go"
 )
 
-func GenerateShortLink(originalURL string) (string, error) {
+type ShortenerService struct{}
+
+func (s *ShortenerService) GenerateShortLink(originalURL string) (string, error) {
 	urlHashBytes := sha256Of(originalURL)
 	generatedNumber := new(big.Int).SetBytes(urlHashBytes).Uint64()
 	finalString, err := base58Encoded([]byte(fmt.Sprintf("%d", generatedNumber)))

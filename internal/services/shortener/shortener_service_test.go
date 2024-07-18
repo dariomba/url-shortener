@@ -22,6 +22,7 @@ func TestGenerateShortLink(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
+			shortener := shortener.ShortenerService{}
 			shortLink, _ := shortener.GenerateShortLink(tt.originalURL)
 			assert.Equal(t, tt.expectedLink, shortLink)
 		})
