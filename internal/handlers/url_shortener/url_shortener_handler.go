@@ -3,16 +3,17 @@ package urlshortener
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/dariomba/url-shortener/internal/services/shortener"
-	"github.com/dariomba/url-shortener/internal/services/storage"
+	"github.com/dariomba/url-shortener/internal/ports"
 	"github.com/gin-gonic/gin"
 )
 
 type URLShortenerHandler struct {
-	storageService storage.StorageService
+	storageService   ports.StorageService
+	shortenerService ports.ShortenerService
 }
 
 type CreateLinkRequest struct {
@@ -21,10 +22,12 @@ type CreateLinkRequest struct {
 
 func NewURLShortenerHandler(
 	router *gin.RouterGroup,
-	storageService storage.StorageService,
+	storageService ports.StorageService,
+	shortenerService ports.ShortenerService,
 ) {
 	urlShortenerHandler := URLShortenerHandler{
-		storageService: storageService,
+		storageService:   storageService,
+		shortenerService: shortenerService,
 	}
 
 	router.POST("/createLink", urlShortenerHandler.CreateLink)
@@ -39,7 +42,7 @@ func (u *URLShortenerHandler) CreateLink(c *gin.Context) {
 		return
 	}
 
-	shortLink, err := shortener.GenerateShortLink(createLinkReq.URL)
+	shortLink, err := u.shortenerService.GenerateShortLink(createLinkReq.URL)
 	if err != nil {
 		log.Error(fmt.Errorf("generating the link --> %w", err))
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": "an error has ocurred creating the link"})
@@ -53,7 +56,7 @@ func (u *URLShortenerHandler) CreateLink(c *gin.Context) {
 		return
 	}
 
-	host := "http://localhost:8080/"
+	host := os.Getenv("HOST")
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "short url created successfully!",
@@ -72,5 +75,5 @@ func (u *URLShortenerHandler) RedirectToURL(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(302, originalURL)
+	c.Redirect(http.StatusFound, originalURL)
 }
