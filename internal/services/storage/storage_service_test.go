@@ -30,7 +30,7 @@ func TestSaveURL(t *testing.T) {
 		mocks       func(m mocksStorage)
 	}{
 		{
-			name:        "TestSaveURLAndFails",
+			name:        "WhenSetFails_ThenReturnsError",
 			shortURL:    shortURL,
 			originalURL: ogURL,
 			expectError: true,
@@ -41,7 +41,7 @@ func TestSaveURL(t *testing.T) {
 			},
 		},
 		{
-			name:        "TestSaveURLAndItWorks",
+			name:        "WhenEverythingOK_ThenReturnsNil",
 			shortURL:    shortURL,
 			originalURL: ogURL,
 			expectError: false,
@@ -88,7 +88,7 @@ func TestGetURL(t *testing.T) {
 		mocks       func(m mocksStorage)
 	}{
 		{
-			name:        "Get existing URL",
+			name:        "WhenGetAnExistingLink_ThenReturnFullURL",
 			shortURL:    "short123",
 			expectedURL: "http://original.url",
 			expectError: false,
@@ -99,7 +99,7 @@ func TestGetURL(t *testing.T) {
 			},
 		},
 		{
-			name:        "Get non-existing URL",
+			name:        "WhenGetANonExistingLink_ThenReturnsAnError",
 			shortURL:    "nonexistent",
 			expectedURL: "",
 			expectError: true,

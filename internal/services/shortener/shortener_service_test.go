@@ -14,7 +14,7 @@ func TestGenerateShortLink(t *testing.T) {
 		expectedLink string
 	}{
 		{
-			name:         "TestShortLinkWithValidURL",
+			name:         "WhenIsCalledWithURL_ThenReturnsValidLink",
 			originalURL:  "https://github.com/dariomba/url-shortener/blob/master/cmd/main.go",
 			expectedLink: "CkpsxkQq",
 		},
